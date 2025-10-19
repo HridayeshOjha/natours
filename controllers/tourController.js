@@ -57,7 +57,7 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
       req.body.images.push(filename);
     }),
   );
-  console.log(req.body);
+  // console.log(req.body);
 
   next();
 });
@@ -93,7 +93,7 @@ exports.aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
   req.query.sort = '-ratingsAverage,price';
   req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
-  console.log(req);
+  // console.log(req);
 
   // req.url =
   //   '/?limit=5&sort=-ratingsAverage,price&fields=name,price,ratingsAverage,summary,difficulty';

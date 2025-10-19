@@ -16,10 +16,11 @@ const { __esModule } = require('xss-clean/lib/xss');
 const viewRouter = require('./routes/viewRoutes');
 const cookieParser = require('cookie-parser');
 const bookingRouter = require('./routes/bookingRoutes');
+const compression = require('compression');
 
 const app = express();
 
-// start express app
+// start express application
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -38,7 +39,7 @@ app.use(
 );
 
 // Development Logging
-console.log(process.env.NODE_ENV);
+// console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
@@ -117,6 +118,8 @@ app.use(
     ],
   }),
 );
+
+app.use(compression());
 
 // app.use((req, res, next) => {
 //   console.log('hello from the middleware');

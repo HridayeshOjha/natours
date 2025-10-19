@@ -16,7 +16,7 @@ mongoose
   .connect(DB, {})
   // .connect(process.env.DATABASE_LOCAL, {})
   .then((con) => {
-    console.log('DB connection successful');
+    // console.log('DB connection successful');
   })
   .catch((err) => console.error('DB connection error:', err));
 
@@ -31,7 +31,7 @@ const importData = async () => {
     await Tour.create(tours);
     await User.create(users, { validateBeforeSave: false });
     await Review.create(reviews);
-    console.log('data successfully loaded!');
+    // console.log('data successfully loaded!');
   } catch (err) {
     console.log(err);
   }
@@ -43,7 +43,7 @@ const deleteData = async () => {
     await Tour.deleteMany();
     await User.deleteMany();
     await Review.deleteMany();
-    console.log('data successfully deleted!');
+    // console.log('data successfully deleted!');
   } catch (err) {
     console.log(err);
   }
@@ -56,4 +56,4 @@ if (process.argv[2] === '--import') {
   deleteData();
 }
 
-console.log(process.argv);
+// console.log(process.argv);
