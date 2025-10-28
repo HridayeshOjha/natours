@@ -17,6 +17,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     // success_url: `${req.protocol}://${req.get('host')}/my-tours/?tour=${req.params.tourId}&user=${req.user.id}&price=${tour.price}`,
     // cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
     success_url: `${req.protocol}://${req.get('host')}/my-tours`,
+     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
     customer_email: req.user.email,
     client_reference_id: req.params.tourId,
     mode: 'payment', // Required in new API
@@ -56,7 +57,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 const createBookingCheckout = async (session) => {
   const tour = session.client_reference_id;
   const user = (await User.findOne({ email: session.customer_email })).id;
-  const price=session.display_items[0].amount/100;
+  const price=session.data.object.amount_total/100;
   await Booking.create({ tour, user, price });
 };
 
